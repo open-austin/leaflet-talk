@@ -15,7 +15,11 @@
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoicHJlc3RvbnAwOCIsImEiOiJjaWo5N2I2eTEwMDJvdTlseG1vd2p4YTNnIn0.nBtca1KH5_9sZeoZfZSCYA'
       }).addTo(map);
-      var marker = L.marker([30.25, -97.75]).addTo(map);
+      var polygon = L.polygon([
+          [30.25, -97.75],
+          [30.25, -97.755],
+          [30.255, -97.75]
+      ]).addTo(map);
     </script>
   </body>
 </html>

@@ -44,7 +44,9 @@
           <script type="text/template">
             # Leaflet Primer
 
-            ### [Preston Pham](https://github.com/prestonp)
+            _for civic hackers and/or aspiring digital cartographers_
+
+            [Preston Pham](https://github.com/prestonp) - [Open Austin](http://www.open-austin.org/)
           </script>
         </section>
         <section data-markdown>
@@ -145,7 +147,6 @@
             ![much better](img/simple.png)
           </script>
         </section>
-
         <section data-markdown>
           <script type="text/template">
             ## Changing mapbox tile sets
@@ -153,7 +154,6 @@
             [![mapbox ids](img/mapbox-ids.png)](https://www.mapbox.com/developers/api/maps/#mapids)
           </script>
         </section>
-
         <section data-markdown>
           <script type="text/template">
             ## Pirate style
@@ -162,36 +162,98 @@
             ![Pirate Map](img/pirate.png)
           </script>
         </section>
-
         <section data-markdown>
           <script type="text/template">
             ## Markers
-            TODO
+            Adding markers is easy
+
+                var marker = L.marker([30.25, 97.75]).addTo(map);
+
+            ![Marker example](img/marker.png)
           </script>
         </section>
         <section data-markdown>
           <script type="text/template">
-            ## Geometry
-            TODO
+            ## Polygons
+
+                var polygon = L.polygon([
+                    [30.25, -97.75],
+                    [30.25, -97.755],
+                    [30.255, -97.75]
+                ]).addTo(map);
+
+            ![Polygon example](img/polygon.png)
           </script>
         </section>
         <section data-markdown>
           <script type="text/template">
-            ## GeoJSON
-            TODO
+            ## Popups
+
+            The leaflet shapes have a method called `bindPopup` that lets you
+            attach HTML content:
+
+                marker.bindPopup('<b>Hai</b>').openPopup();
+                polygon.bindPopup('<b>Hai</b>').openPopup();
+
+            ![Popup example](img/popup.gif)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Events
+
+            Leaflet supports event handling on objects. Here's an example of
+            showing a popup when the user clicks on the map.
+
+                var popup = L.popup();
+
+                function onMapClick(e) {
+                  popup
+                    .setLatLng(e.latlng)
+                    .setContent("You clicked the map at " + e.latlng.toString())
+                    .openOn(map);
+                }
+
+                map.on('click', onMapClick);
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Events Example - Show click location
+            ![Events example](img/events.gif)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Events API
+
+            * `.on(type, function)` - Add event handler
+            * `.once(type, function)` - Add event handler and remove when called
+            * `.off(type, function)` - Remove event handler
+            * `.fire(type, data)` - Manually trigger an event and pass data
+
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+              ## More Links
+
+              * [Slidedeck source](https://github.com/open-austin/leaflet-talk) - includes examples
+              * [Country and US State GeoJSON](https://github.com/johan/world.geo.json)
+              * [Leaflet Reference](http://leafletjs.com/reference.html)
+              * [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/intro)
           </script>
         </section>
         <section data-markdown>
           <script type="text/template">
             # Fin!
 
-            More Links
-            * [Leaflet Reference](http://leafletjs.com/reference.html)
-            * [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/intro)
+            Now run and go map all the things!
+
+            ![all the things](img/allthe.png)
           </script>
         </section>
       </div>
-
     </div>
 
     <script src="lib/js/head.min.js"></script>

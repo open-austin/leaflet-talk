@@ -15,7 +15,17 @@
         id: 'mapbox.streets',
         accessToken: 'pk.eyJ1IjoicHJlc3RvbnAwOCIsImEiOiJjaWo5N2I2eTEwMDJvdTlseG1vd2p4YTNnIn0.nBtca1KH5_9sZeoZfZSCYA'
       }).addTo(map);
-      var marker = L.marker([30.25, -97.75]).addTo(map);
+
+      var popup = L.popup();
+
+      function onMapClick(e) {
+        popup
+          .setLatLng(e.latlng)
+          .setContent("You clicked the map at " + e.latlng.toString())
+          .openOn(map);
+      }
+
+      map.on('click', onMapClick);
     </script>
   </body>
 </html>
