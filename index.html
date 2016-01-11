@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Leaflet Primer - Open Austin</title>
+
+    <meta name="description" content="How 2 make sick maps">
+    <meta name="author" content="Preston Pham">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-markdown>
+          <script type="text/template">
+            # Leaflet Primer
+
+            ### [Preston Pham](https://github.com/prestonp)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## What is [Leaflet](http://leafletjs.com/)?
+
+            An open-source JavaScript library
+            for mobile-friendly interactive maps
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## [Austin Park Equity](http://austinparkequity.com/)
+
+            [![austinparkequity screenshot](img/ape.png)](http://austinparkequity.com/)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## [Instabus](http://instabus.org/)
+
+            [![instabus screenshot](img/insta.png)](http://instabus.org/)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## [Austin Green Map](http://open-austin.github.io/austingreenmap/)
+
+            [![austin green map screenshot](img/agm.png)](http://open-austin.github.io/austingreenmap/)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Getting Started
+          </script>
+        </section>
+        <section data-markdown>
+          <!-- Note: the funky script end keyword is to fix conflicts with parsing html -->
+          <!-- https://github.com/hakimel/reveal.js/pull/1200 -->
+          <script type="text/template">
+            ## Set up boilerplate
+
+            index.html
+
+                <!doctype html>
+                <html>
+                  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+                  <head>
+                    <style>#map { height: 180px; }</style>
+                  </head>
+                  <body>
+                    <div id="map"></div>
+                    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js">__SCRIPT_END__
+                  </body>
+                </html>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Initialize the map
+
+            Modify index.html to include another script tag
+
+                ...
+                <body>
+                  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js">__SCRIPT_END__
+                  <script>
+                    // <3 atx
+                    var map = L.map('map').setView([30.27, -97.746], 13);
+                  __SCRIPT_END__
+                </body>
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Uh oh
+
+            ![Nothing to see](img/blank.png)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            Leaflet requires tile data. [Mapbox.com](https://mapbox.com) provides a free tier.
+            Sign up and add in your access token:
+
+                var map = L.map('map').setView([30.27, -97.746], 13);
+                L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicHJlc3RvbnAwOCIsImEiOiJjaWo5N2I2eTEwMDJvdTlseG1vd2p4YTNnIn0.nBtca1KH5_9sZeoZfZSCYA', {
+                  attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                  maxZoom: 18,
+                  id: 'mapbox.streets',
+                  accessToken: 'pk.eyJ1IjoicHJlc3RvbnAwOCIsImEiOiJjaWo5N2I2eTEwMDJvdTlseG1vd2p4YTNnIn0.nBtca1KH5_9sZeoZfZSCYA'
+                }).addTo(map);
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            Much better!
+            ![much better](img/simple.png)
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Changing mapbox tile sets
+
+            [![mapbox ids](img/mapbox-ids.png)](https://www.mapbox.com/developers/api/maps/#mapids)
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Pirate style
+
+            ![Pirate Snippet](img/pirate-snippet.png)
+            ![Pirate Map](img/pirate.png)
+          </script>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## Markers
+            TODO
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Geometry
+            TODO
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## GeoJSON
+            TODO
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            # Fin!
+
+            More Links
+            * [Leaflet Reference](http://leafletjs.com/reference.html)
+            * [Google Geocoding](https://developers.google.com/maps/documentation/geocoding/intro)
+          </script>
+        </section>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
